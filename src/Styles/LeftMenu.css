@@ -1,0 +1,99 @@
+.leftMenu {
+  width: 270px;
+  height: 100%;
+  min-height: 100vh;
+  background: rgba(2, 6, 23, 0.3);
+  backdrop-filter: blur(2px);
+  border-right: solid 1px;
+  border-image: linear-gradient(
+      to bottom,
+      #fe476f77 30%,
+      #4d25ae 50%,
+      #000d26 80%
+    )
+    1;
+  padding: 20px 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.leftMenu .logoContainer {
+  color: #f1f1f1;
+  display: flex;
+  align-items: center;
+}
+
+.leftMenu .logoContainer i {
+  font-size: 50px;
+  color: #fe476e;
+}
+
+.leftMenu .logoContainer h2 {
+  font-size: 20px;
+  padding-left: 20px;
+  transform: translateY(-4px);
+}
+
+.MenuContainer {
+  margin: 15px 0;
+}
+
+.MenuContainer ul {
+  width: 100%;
+  padding: 0;
+}
+
+.MenuContainer ul li {
+  list-style: none;
+  margin: 5px 0;
+  width: 100%;
+  padding: 5px 0px;
+  position: relative;
+}
+
+.MenuContainer ul li a {
+  text-decoration: none;
+  color: #bababa84;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+.MenuContainer ul li a i {
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+.MenuContainer ul li.active a i {
+  color: #fe476e;
+}
+
+.MenuContainer ul li:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: -15px;
+  width: 0px;
+  height: 100%;
+  background: #fe476e;
+  border-radius: 5px;
+}
+
+.MenuContainer ul li:hover::before,
+.MenuContainer ul li.active::before {
+  width: 5px;
+  transition: 0.3s ease, transform 0.3s ease;
+}
+
+.MenuContainer ul li:hover a {
+  color: #eaeaea84;
+  font-size: 17px;
+  transition: 0.3s ease, transform 0.3s ease;
+}
+
+.MenuContainer ul li.active a {
+  color: #f1f1f1;
+  text-shadow: 0px 0px 4px #f1f1f1;
+  font-size: 17px;
+  transition: 0.3s ease, transform 0.3s ease;
+}

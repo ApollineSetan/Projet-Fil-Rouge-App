@@ -1,0 +1,97 @@
+.containerTopBar {
+  margin-left: 50px;
+  margin-right: 50px;
+  height: 100px;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.returnButton,
+.notificationButton {
+  width: 44px;
+  height: 44px;
+  border: solid 1px #4d25ae;
+  border-radius: 100px;
+  background: linear-gradient(180deg rgba(227));
+  background: linear-gradient(
+    180deg,
+    rgba(227, 62, 159, 0.25) 0%,
+    rgba(77, 37, 174, 0.25) 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.returnButton i,
+.notificationButton i {
+  font-size: 24px;
+  color: #f1f1f1;
+  transform: translateY(2px);
+}
+
+.returnButton:hover,
+.notificationButton:hover {
+  transform: scale(1.1);
+  background: linear-gradient(
+    180deg,
+    rgba(227, 62, 159, 0.5) 0%,
+    rgba(77, 37, 174, 0.5) 100%
+  );
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.returnButton:hover i,
+.notificationButton:hover i {
+  transform: translateY(2);
+}
+
+.searchBox {
+  width: 80%;
+  height: 40px;
+  position: relative;
+  background-color: #020617 0.5;
+  margin-top: 0px;
+  color: #848484;
+  overflow: hidden;
+  border: 1px solid #e33e9e6a;
+  border-radius: 30px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+}
+
+.searchBox input {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  background: rgba(0, 0, 0, 0.5);
+  padding-left: 45px;
+  color: #f1f1f1c9;
+  font-size: 14px;
+}
+
+.searchBox:hover input {
+  background: rgba(0, 0, 0, 0.8);
+  font-size: 15px;
+  transition: 0.3s ease, transform 0.3s ease;
+}
+
+.searchBox:hover .searchIcon {
+  color: #fe476e;
+}
+
+.searchBox .searchIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  padding-right: 45px;
+  text-align: center;
+  line-height: 45px;
+  font-size: 20px;
+  color: #848484;
+}
