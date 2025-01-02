@@ -1,10 +1,10 @@
 .leftMenu {
   width: 270px;
   height: 100%;
-  min-height: 100vh;
+  min-height: 120vh;
   background: rgba(2, 6, 23, 0.3);
   backdrop-filter: blur(2px);
-  border-right: solid 1px;
+  border-right: 1px solid;
   border-image: linear-gradient(
       to bottom,
       #fe476f77 30%,
@@ -13,8 +13,9 @@
     )
     1;
   padding: 20px 15px;
-  overflow: hidden;
-  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
 .leftMenu .logoContainer {
@@ -36,18 +37,19 @@
 
 .MenuContainer {
   margin: 15px 0;
+  flex-grow: 1; /* Prendre tout l'espace restant */
 }
 
 .MenuContainer ul {
-  width: 100%;
   padding: 0;
+  width: 100%;
 }
 
 .MenuContainer ul li {
   list-style: none;
   margin: 5px 0;
   width: 100%;
-  padding: 5px 0px;
+  padding: 10px 0;
   position: relative;
 }
 
@@ -57,13 +59,21 @@
   display: flex;
   align-items: center;
   font-size: 16px;
+  transition: color 0.3s ease, font-size 0.3s ease; /* Ajout de la transition pour la couleur et la taille de la police */
 }
 
 .MenuContainer ul li a i {
   font-size: 20px;
   margin-right: 15px;
+  transition: color 0.3s ease; /* Transition pour la couleur de l'icône */
 }
 
+.secondaryMenu {
+  margin-top: auto; /* Pousse le menu secondaire en bas */
+  padding-top: auto; /* Espace au-dessus des éléments du menu secondaire */
+}
+
+/* Animation (hover, active) */
 .MenuContainer ul li.active a i {
   color: #fe476e;
 }
@@ -73,7 +83,7 @@
   content: "";
   top: 0;
   left: -15px;
-  width: 0px;
+  width: 0;
   height: 100%;
   background: #fe476e;
   border-radius: 5px;
@@ -82,18 +92,18 @@
 .MenuContainer ul li:hover::before,
 .MenuContainer ul li.active::before {
   width: 5px;
-  transition: 0.3s ease, transform 0.3s ease;
+  transition: width 0.3s ease; /* Transition pour le "border-left" de l'élément */
 }
 
 .MenuContainer ul li:hover a {
   color: #eaeaea84;
   font-size: 17px;
-  transition: 0.3s ease, transform 0.3s ease;
+  transition: color 0.3s ease, font-size 0.3s ease; /* Transition pour la couleur et la taille de la police lors du hover */
 }
 
 .MenuContainer ul li.active a {
   color: #f1f1f1;
   text-shadow: 0px 0px 4px #f1f1f1;
   font-size: 17px;
-  transition: 0.3s ease, transform 0.3s ease;
+  transition: color 0.3s ease, font-size 0.3s ease; /* Transition pour la couleur et la taille de la police quand actif */
 }

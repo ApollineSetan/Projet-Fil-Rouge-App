@@ -1,33 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-function Menu({ menuObject }) {
-  useEffect(() => {
-    const allLi = document
-      .querySelector(".MenuContainer ul")
-      .querySelectorAll("li");
-
-    function changeMenuActive() {
-      allLi.forEach((n) => {
-        n.classList.remove("active");
-        // Réinitialisez la couleur des icônes
-        const icon = n.querySelector("i");
-        if (icon) icon.style.color = "";
-      });
-      this.classList.add("active");
-      // Changez la couleur de l'icône du menu actif
-      const activeIcon = this.querySelector("i");
-      if (activeIcon) activeIcon.style.color = "#fe476e"; // La couleur de l'icône active
-    }
-
-    allLi.forEach((n) => n.addEventListener("click", changeMenuActive));
-  }, []);
-
+function Menu({ menuObject, className, activeIndex, onMenuClick }) {
   return (
-    <div className="MenuContainer">
+    <div className={`MenuContainer ${className}`}>
       <ul>
         {menuObject &&
-          menuObject.map((menu) => (
-            <li key={menu.id}>
+          menuObject.map((menu, index) => (
+            <li
+              key={menu.id}
+              className={menu.id === activeIndex ? "active" : ""}
+              onClick={() => onMenuClick(menu.id)} // Mise à jour de l'élément actif
+            >
               <a href="#">
                 <i>{menu.icon}</i>
                 <span>{menu.name}</span>
