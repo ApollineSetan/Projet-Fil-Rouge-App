@@ -1,20 +1,19 @@
 import React from "react";
-import "../Styles/MainContainer.css";
-import { TopBar } from "./TopBar";
-import { SectionDefault } from "./SectionDefault";
+import "../Styles/EditionPage.css";
+import { TopBar } from "../Components/TopBar";
+import { SectionDefault } from "../Components/SectionDefault";
+import { Link } from "react-router-dom";
 
 import { MdOutlineLink } from "react-icons/md";
 import { IoIosAddCircle } from "react-icons/io";
-// import { Section } from "./Section";
-// import { Link } from "react-router-dom";
 
-function MainContainer() {
+function EditionPage() {
   return (
     <div className="mainContainer">
       <TopBar />
       <div className="buttonsContainer">
         <div className="addDemoButton">
-          <a href="#">Ajouter une nouvelle démo</a>
+          <Link to="/add-demo">Ajouter une nouvelle démo</Link>
           <a href="#">
             <i>
               <MdOutlineLink />
@@ -37,4 +36,4 @@ function MainContainer() {
   );
 }
 
-export { MainContainer };
+export { EditionPage };

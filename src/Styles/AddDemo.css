@@ -1,0 +1,121 @@
+.mainContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-top: 0px;
+}
+
+.title {
+  font-size: 18px !important;
+  color: rgb(255, 255, 255, 0.7);
+  width: 100%;
+  margin-left: 20px;
+  padding: 20px 0 0 0;
+}
+
+.form {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  width: 100%;
+}
+
+.firstContainer {
+  display: flex;
+  gap: 50px;
+  margin-left: 10px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: auto;
+}
+
+.firstContainer .addTitle,
+.firstContainer .addSection {
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgb(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.firstContainer .addTitle a {
+  width: 250px;
+}
+
+.firstContainer .addSection {
+  background-color: rgba(217, 217, 217, 0.4);
+  width: 245px;
+}
+
+.firstContainer i {
+  font-size: 20px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.secondContainer {
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgb(255, 255, 255, 0.7);
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-left: 10px;
+  width: 900px;
+  height: 250px;
+}
+
+.thirdContainer {
+  display: flex;
+  gap: 50px;
+  margin-left: 10px;
+  padding-top: 40px;
+  width: auto;
+}
+
+.thirdContainer .addFile,
+.thirdContainer .submit,
+.thirdContainer .addImage {
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgb(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.thirdContainer .addFile {
+  width: 325px;
+}
+
+.thirdContainer i {
+  font-size: 20px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thirdContainer .submit {
+  background-color: rgba(217, 217, 217, 0.4);
+}
+
+.firstContainer a,
+.secondContainer a,
+.thirdContainer a {
+  font-size: 16px;
+  display: flex;
+  text-decoration: none;
+  color: rgb(255, 255, 255, 0.5);
+}
