@@ -18,6 +18,14 @@
   box-sizing: border-box;
 }
 
+.logoImage {
+  width: 100px;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  cursor: pointer;
+}
+
 .leftMenu .logoContainer {
   color: #f1f1f1;
   display: flex;
@@ -92,7 +100,7 @@
 .MenuContainer ul li:hover::before,
 .MenuContainer ul li.active::before {
   width: 5px;
-  transition: width 0.3s ease; /* Transition pour le "border-left" de l'élément */
+  transition: width 0.3s ease;
 }
 
 .MenuContainer ul li:hover a {
