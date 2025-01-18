@@ -5,7 +5,7 @@ import { MusicCard } from "./MusicCard";
 function SectionDefault() {
   return (
     <div className="sectionDefault">
-      <h1>Démos sans section</h1>
+      <h1>Section par défaut</h1>
       <MusicCard />
     </div>
   );
