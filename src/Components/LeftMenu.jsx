@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../Styles/LeftMenu.css";
-import { SiApplemusic } from "react-icons/si";
 import logoImage from "../assets/logoImage.png";
 
 // Components
@@ -11,9 +10,9 @@ function LeftMenu() {
   // Création d'un état pour suivre l'élément de menu actif
   const [activeIndex, setActiveIndex] = useState(null);
 
-  // Fonction pour gérer le clic sur un élément de menu
+  // Fonction pour gérer le clic sur un élément de menu et mettre l'index actif
   const handleMenuClick = (index) => {
-    setActiveIndex(index); // Met à jour l'index actif
+    setActiveIndex(index); 
   };
 
   return (
@@ -24,7 +23,7 @@ function LeftMenu() {
         </i>
       </div>
 
-      {/* Passer activeIndex et handleMenuClick aux deux menus */}
+      {/* Passer activeIndex et handleMenuClick aux menus supérieurs et inférieurs*/}
       <Menu
         menuObject={MenuList.slice(0, 6)}
         className="primaryMenu"
