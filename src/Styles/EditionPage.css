@@ -29,7 +29,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
+  padding: 5px 20px;
   margin: 0 10px;
   cursor: pointer;
 }
@@ -44,12 +44,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
 }
 
 .buttonsContainer .addDemoButton a,
 .buttonsContainer .addSectionDemo a {
-  font-size: 16px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;

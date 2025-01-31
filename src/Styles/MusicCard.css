@@ -13,9 +13,19 @@
     rgba(227, 62, 159, 0.4) 0%,
     rgba(77, 37, 174, 0.4) 100%
   );
-
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+}
+
+.musicCardContainer:hover {
+  border: 1px solid #ffffff;
+  transition: 0.3s ease;
+  background: linear-gradient(
+    180deg,
+    rgba(223, 108, 175, 0.4) 0%,
+    rgba(126, 95, 197, 0.4) 100%
+  );
+
+  box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
 }
 
 .iconsMusicCard {
@@ -23,8 +33,12 @@
   top: 10px;
   right: 10px;
   display: flex;
-  font-size: 20px;
-  color: rgb(255, 255, 255, 0.7);
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.iconsMusicCard i:hover {
+  color: white;
 }
 
 .iconPlay {
@@ -42,13 +56,14 @@
 
 .songName {
   margin-top: 5px;
-  font-size: 14px;
+  font-size: 13px;
   color: white;
 }
 
 .durationMusic {
-  font-size: 12px;
-  color: rgb(255, 255, 255, 0.5);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
   display: block;
   margin-top: 5px;
 }
+
