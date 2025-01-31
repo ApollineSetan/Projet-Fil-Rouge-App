@@ -4,8 +4,7 @@ function Menu({ menuObject, className, activeIndex, onMenuClick }) {
   return (
     <div className={`MenuContainer ${className}`}>
       <ul>
-        {menuObject &&
-          menuObject.map((menu, index) => (
+        {menuObject?.map((menu, index) => (
             <li
               key={menu.id}
               className={menu.id === activeIndex ? "active" : ""}
