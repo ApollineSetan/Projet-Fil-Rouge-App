@@ -14,12 +14,13 @@
     rgba(77, 37, 174, 0.4) 100%
   );
   cursor: pointer;
-  overflow: hidden;
+  /* Supprimer overflow: hidden pour permettre au menu de déborder */
 }
 
 .musicCardContainer::before {
   content: "";
   position: absolute;
+  border-radius: 16px;
   top: 0;
   left: 0;
   right: 0;
@@ -59,13 +60,13 @@
 }
 
 .iconPlay img {
-  width: 60;
+  width: 60px;
   height: 60px;
 }
 
 .infoMusic {
   text-align: center;
-  z-index: 2; /* Le texte doit aussi être au-dessus de la superposition */
+  z-index: 2;
 }
 
 .songName {
@@ -83,7 +84,43 @@
 
 .musicImage {
   margin-top: 10px;
-  width: 100px; /* Tu peux ajuster la taille de l'image */
+  width: 100px;
   height: 100px;
   border-radius: 50%;
+}
+
+.menuOptions {
+  position: absolute;
+  top: 25px;
+  right: -130px; /* Décalage à droite pour le positionner en dehors de la MusicCard */
+  background-color: rgba(169, 50, 143, 0.1); /* Fond semi-transparent */
+  border: 2px solid rgba(255, 255, 255, 0.3); /* Bordure plus subtile */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Effet d'ombre pour la profondeur */
+  border-radius: 10px;
+  width: 150px;
+  z-index: 10;
+  padding: 10px 0;
+}
+
+.menuOptionShare,
+.menuOptionEdit {
+  display: flex;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menuOptionShare:hover,
+.menuOptionEdit:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Couleur de fond à l'hover */
+  cursor: pointer;
+}
+
+.menuOptionShare svg,
+.menuOptionEdit svg{
+  font-size: 15px;
+  color: rgb(255, 255, 255);
+  margin-right: 10px;
 }
