@@ -1,3 +1,5 @@
+/* Styles généraux */
+
 .mainContainer {
   width: 100%;
   height: 100vh;
@@ -14,8 +16,8 @@
   font-size: 17px !important;
   color: rgb(255, 255, 255, 0.7);
   width: 100%;
-  margin-left: 20px;
-  padding: 70px 0 0 0;
+  margin-left: 40px;
+  padding: 60px 0 0 0;
 }
 
 .form {
@@ -25,10 +27,12 @@
   width: 100%;
 }
 
+/* Première ligne de formulaire */
+
 .firstContainer {
   display: flex;
   gap: 50px;
-  margin-left: 10px;
+  margin-left: 15px;
   padding-top: 40px;
   padding-bottom: 40px;
   width: auto;
@@ -42,16 +46,28 @@
   display: flex;
   align-items: center;
   padding: 10px 20px;
-  cursor: pointer;
 }
 
-.firstContainer .addTitle a {
-  width: 250px;
+.firstContainer .addTitle:active,
+.firstContainer .addSection:active {
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.firstContainer .addTitle {
+  width: 400px;
 }
 
 .firstContainer .addSection {
   background-color: rgba(217, 217, 217, 0.4);
-  width: 245px;
+  width: 300px;
+  cursor: pointer;
+}
+
+.firstContainer .addSection:hover,
+.firstContainer .addSection select {
+  background-color: rgba(217, 217, 217, 0.513);
+  width: 300px;
+  cursor: pointer;
 }
 
 .firstContainer i {
@@ -62,6 +78,29 @@
   justify-content: center;
 }
 
+.firstContainer .addTitle input,
+.firstContainer .addSection select {
+  width: 100%;
+  height: 100%;
+  background-color: transparent; /* Ajout : fond transparent pour harmoniser avec le conteneur */
+  border: none; /* Ajout : suppression des bordures blanches */
+  color: white; /* Ajout : texte blanc pour le contraste */
+  font-size: 16px; /* Ajout : taille de texte unifiée */
+}
+
+.firstContainer .addTitle input::placeholder,
+.secondContainer textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5); /* Placeholder stylé */
+}
+
+.firstContainer .addTitle input:focus,
+.firstContainer .addSection select:focus,
+.secondContainer textarea:focus {
+  outline: none; /* Supprimer la bordure par défaut */
+}
+
+/* Deuxième ligne de formulaire (description) */
+
 .secondContainer {
   border-radius: 15px;
   background-color: rgba(0, 0, 0, 0.3);
@@ -69,53 +108,61 @@
   justify-content: flex-start;
   align-items: center;
   padding: 10px 20px;
-  cursor: pointer;
-  margin-left: 10px;
+  margin-left: 15px;
   width: 900px;
   height: 250px;
 }
 
+.secondContainer textarea {
+  width: 100%;
+  height: 100%;
+  background-color: transparent; /* Ajout : fond transparent pour harmoniser avec le conteneur */
+  border: none; /* Ajout : suppression des bordures blanches */
+  color: white; /* Ajout : texte blanc pour le contraste */
+  font-size: 16px; /* Ajout : taille de texte unifiée */
+}
+
+/* Troisième ligne de formulaire (boutons) */
+
 .thirdContainer {
   display: flex;
   gap: 50px;
-  margin-left: 10px;
+  margin-left: 15px;
   padding-top: 40px;
   width: auto;
 }
 
-.thirdContainer .addFile,
-.thirdContainer .submit,
-.thirdContainer .addImage {
-  border-radius: 15px;
-  background-color: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgb(255, 255, 255, 0.7);
-  display: flex;
-  align-items: center;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.thirdContainer .addFile {
-  width: 325px;
-}
-
-.thirdContainer i {
-  font-size: 20px;
-  margin-left: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .thirdContainer .submit {
+  width: 170px;
   background-color: rgba(217, 217, 217, 0.4);
 }
 
-.firstContainer a,
-.secondContainer a,
-.thirdContainer a {
-  font-size: 16px;
+.addFile button,
+.addImage button {
+  background-color: transparent;
   display: flex;
-  text-decoration: none;
-  color: rgb(255, 255, 255, 0.5);
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgb(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.addFile button svg,
+.addImage button svg {
+  font-size: 18px;
+  transform: translateY(1px);
+  margin-right: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.addFile button:hover,
+.addImage button:hover {
+  background-color: rgba(254, 71, 111, 0.6);
+  color: rgb(255, 255, 255);
 }

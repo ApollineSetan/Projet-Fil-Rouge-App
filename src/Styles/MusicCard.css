@@ -1,6 +1,6 @@
 .musicCardContainer {
   width: 350px;
-  height: 180px;
+  height: 160px;
   border: 2px solid #e33e9e6a;
   border-radius: 16px;
   padding: 20px;
@@ -25,7 +25,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, rgba(227, 62, 159, 0.40) 0%, rgba(77, 37, 174, 0.40) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(227, 62, 159, 0.4) 0%,
+    rgba(77, 37, 174, 0.4) 100%
+  );
   z-index: 1;
 }
 
@@ -119,7 +123,7 @@
 }
 
 .menuOptionShare svg,
-.menuOptionEdit svg{
+.menuOptionEdit svg {
   font-size: 15px;
   color: rgb(255, 255, 255);
   margin-right: 10px;

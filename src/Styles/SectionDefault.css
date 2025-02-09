@@ -11,7 +11,7 @@
 .sectionDefault h1 {
   font-size: 17px;
   color: rgb(255, 255, 255, 0.7);
-  padding-left: 50px;
+  padding-left: 10px;
   margin-bottom: 20px;
   width: 100%;
 }
@@ -24,7 +24,7 @@
 
 .musicCardGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 cartes par ligne */
+  grid-template-columns: repeat(3, 1fr); /* 4 cartes par ligne */
   gap: 50px; /* Espacement entre les cartes */
   width: 100%; /* Prendre toute la largeur disponible */
   justify-items: center; /* Centrer les cartes dans chaque cellule */
