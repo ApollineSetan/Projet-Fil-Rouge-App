@@ -1,4 +1,5 @@
 import React from "react";
+import { DemoProvider } from "./Contexts/DemoContext";
 import "./App.css";
 import { LeftMenu } from "./Components/LeftMenu";
 import { EditionPage } from "./Pages/EditionPage";
@@ -7,17 +8,19 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <LeftMenu />
-        <Routes>
-          <Route path="/" element={<EditionPage />} />
-          <Route path="/add-demo" element={<AddDemo />} />
-        </Routes>
+    <DemoProvider>
+      <Router>
+        <div className="App">
+          <LeftMenu />
+          <Routes>
+            <Route path="/" element={<EditionPage />} />
+            <Route path="/add-demo" element={<AddDemo />} />
+          </Routes>
 
-        <div className="background"></div>
-      </div>
-    </Router>
+          <div className="background"></div>
+        </div>
+      </Router>
+    </DemoProvider>
   );
 }
 

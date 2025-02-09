@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../Styles/EditionPage.css";
 import { TopBar } from "../Components/TopBar";
 import { SectionDefault } from "../Components/SectionDefault";
 import { Link } from "react-router-dom";
-
 import { MdOutlineLink } from "react-icons/md";
 import { IoIosAddCircle } from "react-icons/io";
+import { useDemoContext } from "../Contexts/DemoContext"; // Importer le contexte
 
 function EditionPage() {
+  const { demos, deleteDemo } = useDemoContext(); // Utiliser le contexte pour récupérer les démos et la fonction deleteDemo
+
+  useEffect(() => {
+    console.log("Démo(s) ajoutée(s):", demos);
+  }, [demos]);
+
   return (
     <div className="mainContainer">
       <TopBar />
@@ -29,9 +35,9 @@ function EditionPage() {
           </a>
         </div>
       </div>
-      <div className="sectionDefault">
-        <SectionDefault />
-      </div>
+
+      {/* Passer la fonction deleteDemo comme prop à SectionDefault */}
+      <SectionDefault demos={demos} deleteDemo={deleteDemo} />
     </div>
   );
 }
