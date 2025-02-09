@@ -1,11 +1,10 @@
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../Styles/TopBar.css";
 import { BiSearchAlt, BiSolidBell } from "react-icons/bi";
 import { IoIosArrowBack } from "react-icons/io";
 
 function TopBar() {
-
   const navigate = useNavigate();
 
   const handleReturnClick = () => {

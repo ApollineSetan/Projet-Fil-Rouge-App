@@ -4,7 +4,11 @@ import { MusicCard } from "./MusicCard";
 
 function SectionDefault({ demos, deleteDemo }) {
   if (!demos || demos.length === 0) {
-    return <p className="noDemo">Aucune démo n'a été ajoutée pour le moment.</p>;
+    return (
+      <div className="sectionDefault">
+        <h1>Aucune démo n'a été ajoutée pour le moment.</h1>
+      </div>
+    );
   }
 
   return (
@@ -13,9 +17,9 @@ function SectionDefault({ demos, deleteDemo }) {
       <div className="musicCardGrid">
         {demos.map((demo, index) => {
           return (
-            <MusicCard 
+            <MusicCard
               key={demo.id} // Utilise l'id ici pour la clé
-              demo={demo} 
+              demo={demo}
               deleteDemo={deleteDemo} // Passer deleteDemo
             />
           );
@@ -24,6 +28,5 @@ function SectionDefault({ demos, deleteDemo }) {
     </div>
   );
 }
-
 
 export { SectionDefault };

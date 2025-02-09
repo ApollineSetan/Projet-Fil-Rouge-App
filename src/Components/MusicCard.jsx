@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ConfirmationOverlay } from './ConfirmationOverlay';
+import { ConfirmationOverlay } from "./ConfirmationOverlay";
 import "../Styles/MusicCard.css";
 import iconeplay from "../assets/iconeplay.png";
 import { TbTrash, TbDotsVertical } from "react-icons/tb";
@@ -67,8 +67,14 @@ function MusicCard({ demo, deleteDemo }) {
       {/* Menu déroulant */}
       {isMenuVisible && (
         <div className="menuOptions">
-          <Link to="#" className="menuOptionShare"><IoMdShare />Partager</Link>
-          <Link to={`/edit-demo/${id}`} className="menuOptionEdit"><MdOutlineEdit />Modifier</Link>
+          <Link to="#" className="menuOptionShare">
+            <IoMdShare />
+            Partager
+          </Link>
+          <Link to={`/edit-demo/${id}`} className="menuOptionEdit">
+            <MdOutlineEdit />
+            Modifier
+          </Link>
         </div>
       )}
 

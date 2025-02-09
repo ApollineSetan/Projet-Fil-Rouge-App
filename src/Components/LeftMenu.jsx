@@ -12,7 +12,7 @@ function LeftMenu() {
 
   // Fonction pour gérer le clic sur un élément de menu et mettre l'index actif
   const handleMenuClick = (index) => {
-    setActiveIndex(index); 
+    setActiveIndex(index);
   };
 
   return (
