@@ -144,8 +144,8 @@ function AddDemo() {
           <div className="addFile">
             {/* Bouton personnalisé pour le fichier audio */}
             <button type="button" onClick={handleAudioClick}>
-              <MdOutlineLink />
               Ajouter un fichier audio
+              <MdOutlineLink />
             </button>
             <input
               type="file"
@@ -159,8 +159,8 @@ function AddDemo() {
           <div className="addImage">
             {/* Bouton personnalisé pour l'image */}
             <button type="button" onClick={handleImageClick}>
-              <FaImages />
               Choisir une image
+              <FaImages />
             </button>
             <input
               type="file"

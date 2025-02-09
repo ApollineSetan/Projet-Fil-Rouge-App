@@ -23,6 +23,8 @@
 
 .buttonsContainer .addDemoButton,
 .buttonsContainer .addSectionDemo {
+  height: 40px;
+  width: 260px;
   border-radius: 15px;
   background-color: rgba(0, 0, 0, 0.3);
   border: 1px solid rgb(255, 255, 255, 0.7);
@@ -48,7 +50,7 @@
 
 .buttonsContainer .addDemoButton a,
 .buttonsContainer .addSectionDemo a {
-  font-size: 14px;
+  font-size: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
