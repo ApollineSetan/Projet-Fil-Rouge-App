@@ -14,6 +14,7 @@
     rgba(77, 37, 174, 0.4) 100%
   );
   cursor: pointer;
+  transition: transform 0.3s ease-in-out; /* Ajout de la transition pour l'effet zoom */
   /* Supprimer overflow: hidden pour permettre au menu de déborder */
 }
 
@@ -42,6 +43,15 @@
     rgba(126, 95, 197, 0.4) 100%
   );
   box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
+  transform: scale(1.05); /* Effet de zoom sur la carte */
+}
+
+.musicCardContainer:hover::before {
+  background: linear-gradient(
+    180deg,
+    rgba(223, 108, 175, 0.4) 0%,
+    rgba(126, 95, 197, 0.4) 100%
+  );
 }
 
 .iconsMusicCard {
@@ -95,14 +105,13 @@
 
 .menuOptions {
   position: absolute;
-  top: 25px;
-  right: -130px; /* Décalage à droite pour le positionner en dehors de la MusicCard */
-  background-color: rgba(169, 50, 143, 0.1); /* Fond semi-transparent */
-  border: 2px solid rgba(255, 255, 255, 0.3); /* Bordure plus subtile */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Effet d'ombre pour la profondeur */
+  top: 35px;
+  right: -120px;
+  background-color: #000d26;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   width: 150px;
-  z-index: 10;
+  z-index: 1000;
   padding: 10px 0;
 }
 
@@ -118,7 +127,7 @@
 
 .menuOptionShare:hover,
 .menuOptionEdit:hover {
-  background-color: rgba(255, 255, 255, 0.2); /* Couleur de fond à l'hover */
+  background-color: rgba(255, 255, 255, 0.2);
   cursor: pointer;
 }
 
@@ -127,4 +136,14 @@
   font-size: 15px;
   color: rgb(255, 255, 255);
   margin-right: 10px;
+}
+
+.separator {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Bordure en haut pour le trait */
+  margin: 5px 0;
+  width: 80%; /* Largeur du trait */
+  display: block; /* S'assurer que le <hr> est un bloc */
+  margin-left: auto; /* Aligner à gauche */
+  margin-right: auto; /* Aligner à droite */
 }

@@ -1,65 +1,95 @@
 import React, { useState, useEffect } from "react";
 import { TopBar } from "../Components/TopBar";
-import { useParams } from "react-router-dom";
-import { useDemoContext } from "../Contexts/DemoContext"; // Utiliser le contexte pour accéder aux données des démos
-import "../Styles/InfoDemo.css";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDemoContext } from "../Contexts/DemoContext";
+import { RiImageEditFill } from "react-icons/ri";
+import "../Styles/InfoDemo.css"; // Assurez-vous d'ajouter les nouveaux styles ici
 
 function InfoDemo() {
-  const { demoId } = useParams(); // Récupérer l'ID de la démo depuis l'URL
-  const { demos } = useDemoContext(); // Récupérer toutes les démos du contexte
-  const demo = demos.find((demo) => demo.id === demoId); // Trouver la démo spécifique avec l'ID
+  const { demoId } = useParams();
+  const { demos, updateDemo } = useDemoContext();
+  const demo = demos.find((demo) => demo.id === demoId);
+  const navigate = useNavigate();
 
   const [title, setTitle] = useState(demo?.title || "");
   const [description, setDescription] = useState(demo?.description || "");
   const [image, setImage] = useState(demo?.image || "");
+  const [imagePreview, setImagePreview] = useState(
+    demo?.image ? URL.createObjectURL(demo?.image) : ""
+  );
 
   useEffect(() => {
     if (demo) {
       setTitle(demo.title);
       setDescription(demo.description);
       setImage(demo.image);
+      setImagePreview(demo.image ? URL.createObjectURL(demo.image) : "");
     }
   }, [demo]);
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0]; // Ici on récupère le fichier
+    setImage(file);
+    setImagePreview(URL.createObjectURL(file)); // On met à jour l'aperçu de l'image
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Traiter la soumission du formulaire et mettre à jour les données de la démo
-    console.log("Nouvelle démo modifiée:", { title, description, image });
+    const updatedDemo = {
+      title,
+      description,
+      image,
+    };
+    updateDemo(demoId, updatedDemo);
+    navigate("/");
   };
 
   return (
     <div className="mainContainer">
       <TopBar />
-      <h2>Modifier la démo</h2>
+      <div className="sectionTitle">
+        <h2>Modifier la démo</h2>
+      </div>
       {demo ? (
-        <form onSubmit={handleSubmit}>
-          <label>
-            Titre :
+        <form onSubmit={handleSubmit} className="editForm">
+          {/* Image Card */}
+          <div className="imageCard">
+            <img src={imagePreview} alt="Demo" className="demoImage" />
+            <label className="editIconLabel">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="imageInput"
+              />
+              <span className="editIcon">
+                <RiImageEditFill />
+              </span>
+            </label>
+          </div>
+
+          {/* Title and Description fields */}
+          <div className="inputGroup">
             <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              className="inputField"
             />
-          </label>
+          </div>
 
-          <label>
-            Description :
+          <div className="inputGroup">
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              className="textareaField"
             />
-          </label>
+          </div>
 
-          <label>
-            Image :
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => setImage(e.target.files[0])}
-            />
-          </label>
-
-          <button type="submit">Enregistrer</button>
+          {/* Submit button */}
+          <button type="submit" className="submitButton">
+            Enregistrer
+          </button>
         </form>
       ) : (
         <p>Démo non trouvée</p>

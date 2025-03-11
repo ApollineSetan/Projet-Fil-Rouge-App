@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../Styles/AddDemo.css";
 import { TopBar } from "../Components/TopBar";
 import { MdOutlineLink } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 import { FaImages } from "react-icons/fa";
 import { useDemoContext } from "../Contexts/DemoContext"; // Importer le contexte
 
@@ -11,6 +12,7 @@ function AddDemo() {
   const [file, setFile] = useState(null); // Fichier de la démo (obligatoire)
   const [image, setImage] = useState(null); // Image d'illustration (facultatif)
   const { addDemo } = useDemoContext(); // Utiliser addDemo du contexte pour ajouter la démo
+  const navigate = useNavigate();
 
   // Fonction handleSubmit pour ajouter la démo
   const handleSubmit = (event) => {
@@ -96,6 +98,7 @@ function AddDemo() {
       setImage(null);
 
       console.log("Démo ajoutée :", demo);
+      navigate("/");
     };
   };
 

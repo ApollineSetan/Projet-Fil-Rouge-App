@@ -16,7 +16,7 @@
   font-size: 17px !important;
   color: rgb(255, 255, 255, 0.7);
   width: 100%;
-  margin-left: 40px;
+  margin-left: 20px;
   padding: 60px 0 0 0;
 }
 
@@ -56,6 +56,10 @@
 
 .firstContainer .addTitle:active,
 .firstContainer .addSection:active {
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.secondContainer:active {
   border: 1px solid rgb(255, 255, 255);
 }
 
@@ -167,7 +171,7 @@
 
 .addFile button:hover,
 .addImage button:hover {
-  background-color: rgba(254, 71, 111, 0.6);
+  background-color: rgba(254, 71, 110, 0.7);
   color: rgb(255, 255, 255);
 }
 
@@ -192,6 +196,6 @@
 }
 
 .thirdContainer .submit button:hover {
-  background-color: rgba(254, 71, 111, 0.6);
+  background-color: rgba(254, 71, 110, 0.7);
   color: rgb(255, 255, 255);
 }

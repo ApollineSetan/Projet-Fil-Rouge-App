@@ -24,8 +24,18 @@ export const DemoProvider = ({ children }) => {
     setDemos(demos.filter((demo) => demo.id !== demoId));
   };
 
+  // Fonction pour mettre à jour une démo existante
+  const updateDemo = (demoId, updatedDemo) => {
+    setDemos((prevDemos) =>
+      prevDemos.map((demo) =>
+        demo.id === demoId ? { ...demo, ...updatedDemo } : demo
+      )
+    );
+    console.log("Démo mise à jour avec id:", demoId);
+  };
+
   return (
-    <DemoContext.Provider value={{ demos, addDemo, deleteDemo }}>
+    <DemoContext.Provider value={{ demos, addDemo, deleteDemo, updateDemo }}>
       {children}
     </DemoContext.Provider>
   );

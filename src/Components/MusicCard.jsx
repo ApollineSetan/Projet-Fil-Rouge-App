@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ConfirmationOverlay } from "./ConfirmationOverlay";
+import { ConfirmationOverlay } from "./ConfirmationOverlay"; // Garde l'import de l'overlay
 import "../Styles/MusicCard.css";
 import iconeplay from "../assets/iconeplay.png";
 import { TbTrash, TbDotsVertical } from "react-icons/tb";
@@ -30,16 +30,16 @@ function MusicCard({ demo, deleteDemo }) {
   };
 
   const handleDeleteClick = () => {
-    setOverlayVisible(true);
+    setOverlayVisible(true); // Affiche l'overlay
   };
 
   const handleCancel = () => {
-    setOverlayVisible(false);
+    setOverlayVisible(false); // Cache l'overlay si l'annulation est choisie
   };
 
   const handleConfirmDelete = () => {
-    deleteDemo(demo.id);
-    setOverlayVisible(false);
+    deleteDemo(demo.id); // Supprime la démo
+    setOverlayVisible(false); // Cache l'overlay après suppression
   };
 
   const toggleMenu = () => {
@@ -47,8 +47,40 @@ function MusicCard({ demo, deleteDemo }) {
   };
 
   return (
-    <div className="musicCardContainer" style={style}>
-      {/* Overlay de confirmation */}
+    <>
+      <div className="musicCardContainer" style={style}>
+        <div className="iconsMusicCard">
+          <i>
+            <TbTrash onClick={handleDeleteClick} />
+            <TbDotsVertical onClick={toggleMenu} />
+          </i>
+        </div>
+
+        {/* Menu déroulant */}
+        {isMenuVisible && (
+          <div className="menuOptions">
+            <Link to="#" className="menuOptionShare">
+              <IoMdShare />
+              Partager
+            </Link>
+            <hr className="separator" />
+            <Link to={`/edit-demo/${id}`} className="menuOptionEdit">
+              <MdOutlineEdit />
+              Modifier
+            </Link>
+          </div>
+        )}
+
+        <div className="iconPlay" onClick={handlePlayClick}>
+          <img src={iconeplay} alt="iconeplay" />
+        </div>
+        <div className="infoMusic">
+          <p className="songName">{title}</p>
+          <span className="durationMusic">{duration}</span>
+        </div>
+      </div>
+
+      {/* Affichage de l'overlay ici, en dehors de la card */}
       {isOverlayVisible && (
         <ConfirmationOverlay
           demoTitle={title}
@@ -56,36 +88,7 @@ function MusicCard({ demo, deleteDemo }) {
           onConfirm={handleConfirmDelete}
         />
       )}
-
-      <div className="iconsMusicCard">
-        <i>
-          <TbTrash onClick={handleDeleteClick} />
-          <TbDotsVertical onClick={toggleMenu} />
-        </i>
-      </div>
-
-      {/* Menu déroulant */}
-      {isMenuVisible && (
-        <div className="menuOptions">
-          <Link to="#" className="menuOptionShare">
-            <IoMdShare />
-            Partager
-          </Link>
-          <Link to={`/edit-demo/${id}`} className="menuOptionEdit">
-            <MdOutlineEdit />
-            Modifier
-          </Link>
-        </div>
-      )}
-
-      <div className="iconPlay" onClick={handlePlayClick}>
-        <img src={iconeplay} alt="iconeplay" />
-      </div>
-      <div className="infoMusic">
-        <p className="songName">{title}</p>
-        <span className="durationMusic">{duration}</span>
-      </div>
-    </div>
+    </>
   );
 }
 
