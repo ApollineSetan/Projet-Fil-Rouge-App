@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "../Styles/LeftMenu.css";
 import logoImage from "../assets/logoImage.png";
-
-// Components
 import { Menu } from "./Menu";
 import { MenuList } from "./MenuList";
 
