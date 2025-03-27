@@ -14,6 +14,11 @@ function AddDemo() {
   const { addDemo } = useDemoContext(); // Utiliser addDemo du contexte pour ajouter la démo
   const navigate = useNavigate();
 
+  // Nouveau state pour gérer le texte du bouton du fichier audio
+  const [audioButtonText, setAudioButtonText] = useState(
+    "Ajouter un fichier audio"
+  );
+
   // Fonction handleSubmit pour ajouter la démo
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -96,6 +101,7 @@ function AddDemo() {
       setDescription("");
       setFile(null);
       setImage(null);
+      setAudioButtonText("Ajouter un fichier audio"); // Remettre le texte par défaut du bouton audio
 
       console.log("Démo ajoutée :", demo);
       navigate("/");
@@ -105,6 +111,15 @@ function AddDemo() {
   // Fonction pour déclencher l'input de fichier audio
   const handleAudioClick = () => {
     document.getElementById("audioFile").click(); // Simuler un clic sur l'input
+  };
+
+  // Fonction appelée lors du changement du fichier audio
+  const handleAudioChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile); // Met à jour le fichier
+    if (selectedFile) {
+      setAudioButtonText(selectedFile.name); // Met à jour le texte du bouton avec le nom du fichier
+    }
   };
 
   // Fonction pour déclencher l'input de fichier image
@@ -147,7 +162,7 @@ function AddDemo() {
           <div className="addFile">
             {/* Bouton personnalisé pour le fichier audio */}
             <button type="button" onClick={handleAudioClick}>
-              Ajouter un fichier audio
+              {audioButtonText} {/* Affiche le texte du bouton ici */}
               <MdOutlineLink />
             </button>
             <input
@@ -155,7 +170,7 @@ function AddDemo() {
               id="audioFile"
               style={{ display: "none" }} // Caché
               accept="audio/mp3, audio/wav, audio/flac, audio/aac, audio/ogg, audio/aiff, audio/m4a, audio/wma"
-              onChange={(e) => setFile(e.target.files[0])}
+              onChange={handleAudioChange} // Appelle handleAudioChange quand un fichier est sélectionné
               required
             />
           </div>
