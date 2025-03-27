@@ -15,6 +15,11 @@ function AddDemo() {
   const { addDemo, sections } = useDemoContext(); // Utiliser addDemo du contexte pour ajouter la démo
   const navigate = useNavigate();
 
+  // État pour le texte du bouton du fichier audio
+  const [audioButtonText, setAudioButtonText] = useState(
+    "Ajouter un fichier audio"
+  );
+
   // Fonction handleSubmit pour ajouter la démo
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -44,25 +49,6 @@ function AddDemo() {
       return;
     }
 
-    // Vérifier le type MIME si nécessaire
-    const validFormats = [
-      "audio/mpeg", // MP3
-      "audio/wav",
-      "audio/flac",
-      "audio/aac",
-      "audio/ogg",
-      "audio/aiff",
-      "audio/x-m4a",
-      "audio/x-ms-wma",
-    ];
-
-    if (!validFormats.includes(file.type)) {
-      alert(
-        "Format de fichier audio invalide ! Veuillez télécharger un fichier MP3, FLAC, WAV, AAC, OGG, AIFF, M4A ou WMA."
-      );
-      return;
-    }
-
     // Récupérer la durée du fichier audio
     const audio = new Audio(URL.createObjectURL(file));
     audio.onloadedmetadata = () => {
@@ -73,33 +59,28 @@ function AddDemo() {
         return;
       }
 
-      // Formater la durée
       const minutes = Math.floor(duration / 60);
       const seconds = Math.floor(duration % 60);
       const formattedDuration = `${minutes}:${
         seconds < 10 ? "0" + seconds : seconds
       }`;
 
-      // Créer l'objet demo à ajouter
       const demo = {
         title,
         description,
         file,
         image,
-        sectionI: sectionId || null, // Si sectionId est vide, utiliser null
+        sectionId: sectionId || null,
         duration: formattedDuration,
       };
 
-      // Ajouter la démo au contexte
       addDemo(demo, sectionId);
-
-      // Optionnel : réinitialiser les champs après soumission
       setTitle("");
       setDescription("");
       setFile(null);
       setImage(null);
+      setAudioButtonText("Ajouter un fichier audio"); // Réinitialiser le texte du bouton
 
-      console.log("Démo ajoutée :", demo);
       navigate("/");
     };
   };
@@ -107,6 +88,15 @@ function AddDemo() {
   // Fonction pour déclencher l'input de fichier audio
   const handleAudioClick = () => {
     document.getElementById("audioFile").click(); // Simuler un clic sur l'input
+  };
+
+  // Fonction pour mettre à jour le nom du fichier audio sélectionné
+  const handleAudioChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setAudioButtonText(selectedFile.name); // Mettre à jour le texte du bouton avec le nom du fichier
+    }
   };
 
   // Fonction pour déclencher l'input de fichier image
@@ -156,15 +146,15 @@ function AddDemo() {
           <div className="addFile">
             {/* Bouton personnalisé pour le fichier audio */}
             <button type="button" onClick={handleAudioClick}>
-              Ajouter un fichier audio
+              {audioButtonText}
               <MdOutlineLink />
             </button>
             <input
               type="file"
               id="audioFile"
               style={{ display: "none" }} // Caché
-              accept="audio/mp3, audio/wav, audio/flac, audio/aac, audio/ogg, audio/aiff, audio/m4a, audio/wma"
-              onChange={(e) => setFile(e.target.files[0])}
+              accept="audio/*"
+              onChange={handleAudioChange} // Changer de fichier
               required
             />
           </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../Styles/EditionPage.css";
 import { TopBar } from "../Components/TopBar";
 import { SectionDefault } from "../Components/SectionDefault";
@@ -12,6 +12,7 @@ function EditionPage() {
   const { demos, deleteDemo, addSection, sections } = useDemoContext(); // Utiliser le contexte pour récupérer les démos et la fonction deleteDemo
   const [newSectionName, setNewSectionName] = useState(""); // État local pour le nom de la nouvelle section
   const [showInput, setShowInput] = useState(false); // État pour gérer l'affichage de l'input
+  const inputRef = useRef(null); // Utiliser useRef pour cibler la div contenant l'input
 
   const handleAddSection = () => {
     if (newSectionName) {
@@ -26,11 +27,31 @@ function EditionPage() {
   };
 
   const handleKeyDown = (event) => {
-    // Vérifier si l'utilisateur appuie sur la touche "Entrée" (keyCode 13 ou "Enter")
+    // Vérifier si l'utilisateur appuie sur la touche "Entrée"
     if (event.key === "Enter") {
       handleAddSection(); // Valider l'ajout de la section
     }
   };
+
+  // useEffect pour écouter les clics en dehors de l'input
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Si le clic est à l'extérieur de la div contenant l'input, cacher l'input
+      if (inputRef.current && !inputRef.current.contains(event.target)) {
+        setShowInput(false);
+      }
+    };
+
+    // Ajouter l'écouteur d'événement si l'input est visible
+    if (showInput) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    // Nettoyer l'écouteur quand l'input disparaît ou quand le composant se démonte
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showInput]); // Exécuter cet effet chaque fois que showInput change
 
   useEffect(() => {
     console.log("Démo(s) ajoutée(s):", demos);
@@ -63,14 +84,14 @@ function EditionPage() {
 
       {/* Afficher l'input si showInput est vrai */}
       {showInput && (
-        <div className="inputContainer">
+        <div className="inputContainer" ref={inputRef}>
           <input
             type="text"
             placeholder="Nom de la nouvelle section"
             value={newSectionName}
             onChange={(e) => setNewSectionName(e.target.value)}
             onKeyDown={handleKeyDown} // Capturer l'événement "Entrée"
-            className="transparentInput" // Ajout d'une classe pour cibler cet input
+            className="transparentInput"
           />
         </div>
       )}
