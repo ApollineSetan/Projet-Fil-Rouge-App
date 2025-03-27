@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext } from "react";
-import { v4 as uuidv4 } from "uuid"; // Import de la fonction uuidv4
+import { v4 as uuidv4 } from "uuid";
 
 // Création du contexte
 const DemoContext = createContext();
@@ -10,12 +10,19 @@ export const useDemoContext = () => {
 
 export const DemoProvider = ({ children }) => {
   const [demos, setDemos] = useState([]);
+  const [sections, setSections] = useState([]);
 
   // Fonction pour ajouter une démo avec un id unique
-  const addDemo = (demo) => {
-    const newDemo = { ...demo, id: uuidv4() }; // Ajouter un id unique à la démo
+  const addDemo = (demo, sectionId) => {
+    const newDemo = { ...demo, id: uuidv4(), sectionId }; // Ajouter un id unique à la démo
     console.log("Démo ajoutée avec id: ", newDemo);
     setDemos([...demos, newDemo]);
+  };
+
+  // Fonction pour ajouter une section avec un id unique
+  const addSection = (sectionName) => {
+    const newSection = { name: sectionName, id: uuidv4() };
+    setSections([...sections, newSection]);
   };
 
   // Fonction pour supprimer une démo par son id
@@ -35,7 +42,9 @@ export const DemoProvider = ({ children }) => {
   };
 
   return (
-    <DemoContext.Provider value={{ demos, addDemo, deleteDemo, updateDemo }}>
+    <DemoContext.Provider
+      value={{ demos, addDemo, deleteDemo, updateDemo, addSection, sections }}
+    >
       {children}
     </DemoContext.Provider>
   );

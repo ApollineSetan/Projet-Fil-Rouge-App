@@ -11,13 +11,9 @@ function AddDemo() {
   const [description, setDescription] = useState(""); // Description (facultatif)
   const [file, setFile] = useState(null); // Fichier de la démo (obligatoire)
   const [image, setImage] = useState(null); // Image d'illustration (facultatif)
-  const { addDemo } = useDemoContext(); // Utiliser addDemo du contexte pour ajouter la démo
+  const [sectionId, setSectionId] = useState(""); // ID de la section (facultatif)
+  const { addDemo, sections } = useDemoContext(); // Utiliser addDemo du contexte pour ajouter la démo
   const navigate = useNavigate();
-
-  // Nouveau state pour gérer le texte du bouton du fichier audio
-  const [audioButtonText, setAudioButtonText] = useState(
-    "Ajouter un fichier audio"
-  );
 
   // Fonction handleSubmit pour ajouter la démo
   const handleSubmit = (event) => {
@@ -90,18 +86,18 @@ function AddDemo() {
         description,
         file,
         image,
+        sectionI: sectionId || null, // Si sectionId est vide, utiliser null
         duration: formattedDuration,
       };
 
       // Ajouter la démo au contexte
-      addDemo(demo);
+      addDemo(demo, sectionId);
 
       // Optionnel : réinitialiser les champs après soumission
       setTitle("");
       setDescription("");
       setFile(null);
       setImage(null);
-      setAudioButtonText("Ajouter un fichier audio"); // Remettre le texte par défaut du bouton audio
 
       console.log("Démo ajoutée :", demo);
       navigate("/");
@@ -111,15 +107,6 @@ function AddDemo() {
   // Fonction pour déclencher l'input de fichier audio
   const handleAudioClick = () => {
     document.getElementById("audioFile").click(); // Simuler un clic sur l'input
-  };
-
-  // Fonction appelée lors du changement du fichier audio
-  const handleAudioChange = (e) => {
-    const selectedFile = e.target.files[0];
-    setFile(selectedFile); // Met à jour le fichier
-    if (selectedFile) {
-      setAudioButtonText(selectedFile.name); // Met à jour le texte du bouton avec le nom du fichier
-    }
   };
 
   // Fonction pour déclencher l'input de fichier image
@@ -145,9 +132,16 @@ function AddDemo() {
             />
           </div>
           <div className="addSection">
-            <select>
+            <select
+              value={sectionId}
+              onChange={(e) => setSectionId(e.target.value)}
+            >
               <option value="">Ranger dans une section</option>
-              {/* Ajoute des options ici */}
+              {sections.map((section) => (
+                <option key={section.id} value={section.id}>
+                  {section.name}
+                </option>
+              ))}
             </select>
           </div>
         </div>
@@ -162,7 +156,7 @@ function AddDemo() {
           <div className="addFile">
             {/* Bouton personnalisé pour le fichier audio */}
             <button type="button" onClick={handleAudioClick}>
-              {audioButtonText} {/* Affiche le texte du bouton ici */}
+              Ajouter un fichier audio
               <MdOutlineLink />
             </button>
             <input
@@ -170,7 +164,7 @@ function AddDemo() {
               id="audioFile"
               style={{ display: "none" }} // Caché
               accept="audio/mp3, audio/wav, audio/flac, audio/aac, audio/ogg, audio/aiff, audio/m4a, audio/wma"
-              onChange={handleAudioChange} // Appelle handleAudioChange quand un fichier est sélectionné
+              onChange={(e) => setFile(e.target.files[0])}
               required
             />
           </div>

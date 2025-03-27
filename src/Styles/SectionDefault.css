@@ -1,5 +1,4 @@
 .sectionDefault {
-  padding: 10px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -9,18 +8,17 @@
 }
 
 .sectionDefault h1 {
+  padding-left: 20px;
   font-size: 17px;
   color: rgb(255, 255, 255, 0.7);
-  padding-left: 10px;
-  margin-bottom: 20px;
   width: 100%;
 }
 
 .musicCardGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 4 cartes par ligne */
-  gap: 50px; /* Espacement entre les cartes */
-  width: 100%; /* Prendre toute la largeur disponible */
-  justify-items: center; /* Centrer les cartes dans chaque cellule */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  width: 100%;
+  justify-items: center;
   margin-top: 20px;
 }
