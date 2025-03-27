@@ -25,6 +25,20 @@ export const DemoProvider = ({ children }) => {
     setSections([...sections, newSection]);
   };
 
+  // Fonction pour supprimer une section
+  const deleteSection = (sectionId) => {
+    setSections(sections.filter((section) => section.id !== sectionId));
+  };
+
+  // Fonction pour déplacer les démos d'une section supprimée vers la SectionDefault (section par défaut)
+  const moveDemosToDefault = (sectionId) => {
+    setDemos(
+      demos.map((demo) =>
+        demo.sectionId === sectionId ? { ...demo, sectionId: null } : demo
+      )
+    );
+  };
+
   // Fonction pour supprimer une démo par son id
   const deleteDemo = (demoId) => {
     console.log("Démo supprimée avec id: ", demoId);
@@ -43,7 +57,16 @@ export const DemoProvider = ({ children }) => {
 
   return (
     <DemoContext.Provider
-      value={{ demos, addDemo, deleteDemo, updateDemo, addSection, sections }}
+      value={{
+        demos,
+        addDemo,
+        deleteDemo,
+        updateDemo,
+        addSection,
+        sections,
+        deleteSection,
+        moveDemosToDefault,
+      }}
     >
       {children}
     </DemoContext.Provider>
