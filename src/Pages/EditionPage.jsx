@@ -36,6 +36,9 @@ function EditionPage() {
     console.log("Démo(s) ajoutée(s):", demos);
   }, [demos]);
 
+  const isAnyDemoPresent =
+    demos.length > 0 || sections.some((section) => section.demos?.length > 0);
+
   return (
     <div className="mainContainer">
       <TopBar />
@@ -72,6 +75,10 @@ function EditionPage() {
         </div>
       )}
       <div className="sectionsDefault">
+        {!isAnyDemoPresent && (
+          <h1>Aucune démo n'a été ajoutée pour le moment.</h1>
+        )}
+
         {/* Passer la fonction deleteDemo comme prop à SectionDefault */}
         <SectionDefault demos={demos} deleteDemo={deleteDemo} />
 

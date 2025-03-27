@@ -6,11 +6,7 @@ function SectionDefault({ demos, deleteDemo }) {
   const demosWithoutSection = demos.filter((demo) => !demo.sectionId);
 
   if (demosWithoutSection.length === 0) {
-    return (
-      <div className="sectionDefault">
-        <h1>Aucune démo n'a été ajoutée pour le moment.</h1>
-      </div>
-    );
+    return null;
   }
 
   return (
