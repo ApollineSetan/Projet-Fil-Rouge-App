@@ -1,7 +1,6 @@
-import React, { createContext, useState, useContext } from "react";
-import { v4 as uuidv4 } from "uuid";
+import React, { createContext, useContext, useState } from "react"; // Importer createContext et useContext
+import { v4 as uuidv4 } from "uuid"; // Si tu utilises uuid pour générer des IDs uniques
 
-// Création du contexte
 const DemoContext = createContext();
 
 export const useDemoContext = () => {
@@ -14,12 +13,19 @@ export const DemoProvider = ({ children }) => {
 
   // Fonction pour ajouter une démo avec un id unique
   const addDemo = (demo, sectionId) => {
-    const newDemo = { ...demo, id: uuidv4(), sectionId }; // Ajouter un id unique à la démo
-    console.log("Démo ajoutée avec id: ", newDemo);
+    const newDemo = { ...demo, id: uuidv4(), sectionId };
     setDemos([...demos, newDemo]);
   };
 
-  // Fonction pour ajouter une section avec un id unique
+  const updateDemo = (demoId, updatedDemo) => {
+    setDemos(
+      demos.map((demo) =>
+        demo.id === demoId ? { ...demo, ...updatedDemo } : demo
+      )
+    );
+  };
+
+  // Fonction pour ajouter une section
   const addSection = (sectionName) => {
     const newSection = { name: sectionName, id: uuidv4() };
     setSections([...sections, newSection]);
@@ -30,7 +36,7 @@ export const DemoProvider = ({ children }) => {
     setSections(sections.filter((section) => section.id !== sectionId));
   };
 
-  // Fonction pour déplacer les démos d'une section supprimée vers la SectionDefault (section par défaut)
+  // Fonction pour déplacer les démos d'une section supprimée vers la SectionDefault
   const moveDemosToDefault = (sectionId) => {
     setDemos(
       demos.map((demo) =>
@@ -39,20 +45,18 @@ export const DemoProvider = ({ children }) => {
     );
   };
 
-  // Fonction pour supprimer une démo par son id
+  // Fonction pour supprimer une démo
   const deleteDemo = (demoId) => {
-    console.log("Démo supprimée avec id: ", demoId);
     setDemos(demos.filter((demo) => demo.id !== demoId));
   };
 
-  // Fonction pour mettre à jour une démo existante
-  const updateDemo = (demoId, updatedDemo) => {
-    setDemos((prevDemos) =>
-      prevDemos.map((demo) =>
-        demo.id === demoId ? { ...demo, ...updatedDemo } : demo
+  // Fonction pour mettre à jour le nom de la section
+  const updateSectionName = (sectionId, newName) => {
+    setSections(
+      sections.map((section) =>
+        section.id === sectionId ? { ...section, name: newName } : section
       )
     );
-    console.log("Démo mise à jour avec id:", demoId);
   };
 
   return (
@@ -66,6 +70,7 @@ export const DemoProvider = ({ children }) => {
         sections,
         deleteSection,
         moveDemosToDefault,
+        updateSectionName, // Ajout de la fonction pour modifier le nom de la section
       }}
     >
       {children}

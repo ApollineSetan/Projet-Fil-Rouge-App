@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import "../Styles/Section.css";
-import { MusicCard } from "./MusicCard"; // Importation de MusicCard
+import { MusicCard } from "./MusicCard";
 import { useDemoContext } from "../Contexts/DemoContext";
-import { TbTrash } from "react-icons/tb"; // Icône de suppression
-import { SectionConfirmationOverlay } from "./SectionConfirmationOverlay"; // Importer l'overlay
+import { TbTrash } from "react-icons/tb";
+import { SectionConfirmationOverlay } from "./SectionConfirmationOverlay";
 
 function Section({ demos, sectionId }) {
-  const { deleteDemo, sections, deleteSection, moveDemosToDefault } =
-    useDemoContext();
-  const [isOverlayVisible, setOverlayVisible] = useState(false); // Nouvel état pour l'overlay
+  const {
+    deleteDemo,
+    sections,
+    deleteSection,
+    moveDemosToDefault,
+    updateSectionName,
+  } = useDemoContext();
+  const [isOverlayVisible, setOverlayVisible] = useState(false);
+  const [isEditingName, setIsEditingName] = useState(false); // Pour gérer l'édition du nom
+  const [newSectionName, setNewSectionName] = useState("");
   const section = sections.find((sec) => sec.id === sectionId);
 
   if (!section) {
@@ -29,13 +36,43 @@ function Section({ demos, sectionId }) {
     setOverlayVisible(false); // Cacher l'overlay après suppression
   };
 
+  const handleNameEdit = () => {
+    setIsEditingName(true); // Activer le mode édition du nom
+    setNewSectionName(section.name); // Pré-charger le nom actuel
+  };
+
+  const handleNameChange = (e) => {
+    setNewSectionName(e.target.value); // Mettre à jour le nom pendant la saisie
+  };
+
+  const handleNameSubmit = () => {
+    if (newSectionName.trim() !== "") {
+      updateSectionName(section.id, newSectionName); // Mise à jour du nom de la section
+      setIsEditingName(false); // Désactiver le mode édition
+    }
+  };
+
   return (
     <div className="sectionContainer">
       <div className="sectionHeader">
-        <h1>{section.name}</h1>
-        {/* Afficher l'icône de suppression uniquement pour les sections créées par l'utilisateur */}
+        {isEditingName ? (
+          <input
+            type="text"
+            value={newSectionName}
+            onChange={handleNameChange}
+            onBlur={handleNameSubmit} // L'utilisateur quitte le champ
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleNameSubmit(); // Enregistrer à l'appui de la touche "Entrée"
+            }}
+            autoFocus
+          />
+        ) : (
+          <h1 onDoubleClick={handleNameEdit}>{section.name}</h1> // Double-clic pour modifier le nom
+        )}
+
         <TbTrash className="deleteIcon" onClick={handleDeleteSection} />
       </div>
+
       <div className="musicCardGrid">
         {demos
           .filter((demo) => demo.sectionId === section.id)
@@ -44,12 +81,11 @@ function Section({ demos, sectionId }) {
           ))}
       </div>
 
-      {/* Affichage de l'overlay ici */}
       {isOverlayVisible && (
         <SectionConfirmationOverlay
-          sectionTitle={section.name} // Remplacer "demoTitle" par le nom de la section
-          onCancel={handleCancel} // Annulation de la suppression
-          onConfirm={handleConfirmDelete} // Confirmation de la suppression
+          sectionTitle={section.name}
+          onCancel={handleCancel}
+          onConfirm={handleConfirmDelete}
         />
       )}
     </div>
