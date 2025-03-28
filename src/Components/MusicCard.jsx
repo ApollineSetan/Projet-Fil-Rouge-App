@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ConfirmationOverlay } from "./ConfirmationOverlay"; // Garde l'import de l'overlay
+import { DemoConfirmationOverlay } from "./DemoConfirmationOverlay"; // Garde l'import de l'overlay
 import "../Styles/MusicCard.css";
 import iconeplay from "../assets/iconeplay.png";
 import { TbTrash, TbDotsVertical } from "react-icons/tb";
@@ -82,7 +82,7 @@ function MusicCard({ demo, deleteDemo }) {
 
       {/* Affichage de l'overlay ici, en dehors de la card */}
       {isOverlayVisible && (
-        <ConfirmationOverlay
+        <DemoConfirmationOverlay
           demoTitle={title}
           onCancel={handleCancel}
           onConfirm={handleConfirmDelete}

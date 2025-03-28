@@ -1,11 +1,11 @@
 import React from "react";
 import "../Styles/ConfirmationOverlay.css"; // Le fichier CSS pour le style
 
-function ConfirmationOverlay({ onCancel, onConfirm, demoTitle }) {
+function DemoConfirmationOverlay({ onCancel, onConfirm, demoTitle }) {
   return (
     <div className="overlay">
       <div className="confirmationBox">
-        <h3>Êtes-vous sûr de vouloir supprimer cette démo ? </h3>
+        <h3>Êtes-vous sûr de vouloir supprimer ?</h3>
         <p>
           Cette action est irréversible et entraînera la suppression définitive
           de "<strong>{demoTitle}</strong>".
@@ -23,4 +23,4 @@ function ConfirmationOverlay({ onCancel, onConfirm, demoTitle }) {
   );
 }
 
-export { ConfirmationOverlay };
+export { DemoConfirmationOverlay };
